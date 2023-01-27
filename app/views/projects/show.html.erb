@@ -1,0 +1,45 @@
+<section class="border-container">
+  <section>
+    <fieldset>
+      <legend><%= @project.title.capitalize %></legend>
+      <div class="flex__content">
+        <div class="">
+        <% unless @project.content.length.zero? %>
+          <% @project.content.each do |_, value| %>
+            <%= sanitize "<#{value["tag"]}>#{value["content"]}</#{value["tag"]}>" %>
+          <% end %>
+        <% end %>
+        </div>
+        <div>
+          <img src="<%= @project.thumbnail_url %>" alt="<%= @project.thumbnail_alt %>">
+          <hr>
+          <h2>
+            Se mere til dette projekt
+          </h2>
+          <div class="link_container">
+            <a target="_blank" href="<%= @project.link_to_page %>"><span class="fa-solid fa-link"></span></a>
+            <a target="_blank" href="<%= @project.link_to_github %>"><span class="fa-brands fa-square-github"></span></a>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </section>
+
+    <% unless @project_snippets.length.zero? %>
+  <section class="projects">
+    <fieldset>
+      <legend>Projekter</legend>
+      <ul class="projects__list">
+      <% @project_snippets.each do |snippet| %>
+        <li class="projects__list-item">
+          <a href="<%= snippet.title %>">
+            <h2><%= snippet.title.capitalize %></h2>
+            <img src="<%= snippet.thumbnail_url %>" alt="<%= snippet.thumbnail_alt %>">
+          </a>
+        </li>
+      <% end %>
+      </ul>
+    </fieldset>
+  </section>
+  <% end %>
+</section>

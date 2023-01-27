@@ -1,0 +1,19 @@
+<section class="border-container">
+  <% unless @projects.length.zero? %>
+  <section class="projects">
+    <fieldset>
+      <legend>Projekter</legend>
+      <ul class="projects__list">
+      <% @projects.each do |project| %>
+        <li class="projects__list-item">
+          <a href="projects/<%= project.title %>">
+            <h2><%= project.title.capitalize %></h2>
+            <img src="<%= project.thumbnail_url %>" alt="<%= project.thumbnail_alt %>">
+          </a>
+        </li>
+      <% end %>
+      </ul>
+    </fieldset>
+  </section>
+  <% end %>
+</section>

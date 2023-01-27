@@ -1,0 +1,45 @@
+.snippet  {
+  width: 33%;
+
+  &__container {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__link {
+    position: relative;
+  }
+
+  &__overlay {
+    background-color: $primary-color;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    &__text-container {
+      position: absolute;
+      text-align: center;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
+
+    &:hover {
+      opacity: .95;
+    }
+  }
+
+  &__image-wrapper {
+    img {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

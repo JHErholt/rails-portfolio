@@ -1,0 +1,53 @@
+<section class="hero">
+  <div class="hero__about">
+    <h1 class="hero__title"> <%= @name %></h1>
+    <h2 class="hero__bio"> <%= @bio %></h2>
+  </div>
+  <div class="hero__gradient"></div>
+  <img class="hero__avatar" src="<%= @avatar_url %>" alt="Avatar from github, used as profile pic">
+</section>
+
+<section class="border-container home">
+  <section>
+    <fieldset>
+      <legend>Om mig</legend>
+      <p>Jeg hedder Jacob Erholt, og er 20 år gammel.</p>
+      <p>Jeg er uddannet som <b>Web integrator</b> via Roskilde Tekniske Skole</p>
+      <p>For mere information gå til <a href="about">Om mig</a> !</p>
+    </fieldset>
+  </section>
+
+  <% unless @skills.length.zero? %>
+    <section class="skills">
+      <fieldset>
+        <legend>Skill<%= "s" if @skills.length > 1%></legend>
+        <ul class="skills__list">
+          <% @skills.each do |skill| %>
+          <li class="skills__list-item">
+            <h2><%= skill.capitalize %></h2>
+            <i class="devicon-<%= skill %>-plain colored"></i>
+          </li>
+          <% end %>
+        </ul>
+      </fieldset>
+    </section>
+  <% end %>
+
+  <% unless @featured_repos.length.zero? %>
+  <section class="projects">
+    <fieldset>
+      <legend>Projekter</legend>
+      <ul class="projects__list">
+      <% @featured_repos.each do |repo| %>
+        <li class="projects__list-item">
+          <a href="projects/<%= repo.title %>">
+            <h2><%= repo.title.capitalize %></h2>
+            <img src="<%= repo.thumbnail_url %>" alt="<%= repo.thumbnail_alt %>">
+          </a>
+        </li>
+      <% end %>
+      </ul>
+    </fieldset>
+  </section>
+  <% end %>
+</section>

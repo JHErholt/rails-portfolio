@@ -1,0 +1,20 @@
+*:not(h1, h2, h3, h4, h5, h6, a) {
+  font-family: 'League Spartan', 'sans-serif';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  font-family: 'Alice', serif;
+}
+
+a {
+  color: $primary-color;
+  &:hover {
+    color: darken($primary-color, 15);
+  }
+}

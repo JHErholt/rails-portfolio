@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jacob Erholt <%= "- Looking for job" if @hireable %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%# Font awesome %>
+    <script src="https://kit.fontawesome.com/d82e8d25cf.js" crossorigin="anonymous"></script>
+    <%# Dev icons %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header>
+      <label for="checkbox">
+        <input type="checkbox" id="checkbox">
+        <span class="menu">
+          <span class="hamburger"></span>
+        </span>
+        <nav>
+          <ul>
+            <li><a href="/">Forside</a></li>
+            <li><a href="/about">Om mig</a></li>
+            <li><a href="/projects">Projekter</a></li>
+          </ul>
+        </nav>
+      </label>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <div class="socials-line">
+      <% unless @twitter_username.nil? %>
+        <span><a target="_blank" href="https://twitter.com/<%= @twitter_username %>"><span class="fa-brands fa-square-twitter"></span></a></span>
+      <% end %>
+        <span><a target="_blank" href="<%= @github_url %>"><span class="fa-brands fa-square-github"></span></a></span>
+      <% unless @linkedIn_name.nil? %>
+        <span><a target="_blank" href="https://www.linkedin.com/in/<%= @linkedIn_name %>"><span class="fa-brands fa-linkedin"></span></a></span>
+      <% end %>
+      </div>
+
+      <section class="footer__section">
+        <div class="footer__contact">
+          <% unless @mail.nil? %>
+            <p><%= @mail %></p>
+          <% end %>
+          <% unless @phone_number.nil? %>
+            <p><%= @phone_number %></p>
+          <% end %>
+          <% unless @location.nil? %>
+            <p><%= @location %></p>
+          <% end %>
+        </div>
+        <div class="footer__experience">
+          <span><%= @updated_year - @start_year %></span>
+          <span>års</span>
+          <span>erfaring</span>
+        </div>
+        <div class="footer__occupation">
+          <% unless @hireable %>
+            <p><%= @bio %></p>
+            <p>hos</p>
+            <a href="<%= @company_url %>"><%= @company_name %></a>
+          <% else %>
+              <p>Hyr mig!</p>
+          <% end %>
+        </div>
+      </section>
+      <small class="copyright">&#169; <%#= @start_year %><%= @updated_year %> <%= @name %></small>
+    </footer>
+
+    <script>
+      document.addEventListener("turbo:load", function() {
+        let observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add('animated--done');
+                observer.unobserve(entry.target);
+              }, 200);
+            }
+          });
+        });
+
+        Array.prototype.forEach.call(document.querySelector(".border-container").children, child => {
+          observer.observe(child)
+        })
+      })
+    </script>
+  </body>
+</html>

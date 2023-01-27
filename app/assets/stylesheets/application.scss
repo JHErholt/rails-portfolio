@@ -1,0 +1,18 @@
+// Abstracts
+@import 'abstracts/variables';
+
+// Base
+@import 'base/base';
+@import 'base/font.scss';
+@import 'base/typography';
+
+// Components
+@import 'components/snippet.scss';
+
+// Layout
+@import 'layout/header';
+@import 'layout/footer';
+
+// Pages
+@import 'pages/home.scss';
+@import 'pages/project.scss'
